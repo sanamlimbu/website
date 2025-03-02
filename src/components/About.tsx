@@ -1,48 +1,48 @@
-import { Box, Typography, useMediaQuery } from "@mui/material";
-import Laptop from "../assets/laptop.jpeg";
+import { Box, Typography, useMediaQuery } from '@mui/material';
+import Laptop from '../assets/laptop.jpeg';
 
 export default function About({ id }: { id: string }) {
-  const matches = useMediaQuery("(max-width:480px)");
+  const matches = useMediaQuery('(max-width:480px)');
   return (
     <Box
       id={id}
       sx={{
-        background: "#fff",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        background: '#fff',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          maxWidth: "62em",
-          padding: "6em 2em 6em 2em",
-          width: "100%",
-          "@media (max-width: 1024px)": {
-            flexDirection: "column",
-            textAlign: "center",
-            alignItems: "center",
-            gap: "2em",
+          display: 'flex',
+          justifyContent: 'space-between',
+          maxWidth: '62em',
+          padding: '6em 2em 6em 2em',
+          width: '100%',
+          '@media (max-width: 1024px)': {
+            flexDirection: 'column',
+            textAlign: 'center',
+            alignItems: 'center',
+            gap: '2em',
           },
         }}
       >
-        <Box sx={{ position: "relative" }}>
+        <Box sx={{ position: 'relative' }}>
           {matches ? (
             <img
               src={Laptop}
-              height={"250px"}
+              height={'250px'}
               style={{
-                borderRadius: "16px",
+                borderRadius: '16px',
               }}
             />
           ) : (
             <img
               src={Laptop}
-              height={"336px"}
+              height={'336px'}
               style={{
-                borderRadius: "16px",
+                borderRadius: '16px',
               }}
             />
           )}
@@ -50,10 +50,10 @@ export default function About({ id }: { id: string }) {
         <Box>
           <Typography
             sx={{
-              fontWeight: "800",
-              background: "linear-gradient(to right, #007FFF, #0059B2)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
+              fontWeight: '800',
+              background: 'linear-gradient(to right, #007FFF, #0059B2)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
             }}
           >
             ABOUT ME
@@ -61,9 +61,9 @@ export default function About({ id }: { id: string }) {
           <Typography
             variant="h5"
             sx={{
-              marginTop: "0.5em",
-              marginBottom: "0.5em",
-              fontWeight: "bold",
+              marginTop: '0.5em',
+              marginBottom: '0.5em',
+              fontWeight: 'bold',
             }}
           >
             A Full Stack Software Developer
@@ -71,9 +71,9 @@ export default function About({ id }: { id: string }) {
           </Typography>
           <Typography
             sx={{
-              fontSize: "18px",
-              color: "rgb(85, 85, 85)",
-              maxWidth: "22em",
+              fontSize: '18px',
+              color: 'rgb(85, 85, 85)',
+              maxWidth: '22em',
             }}
           >
             I am a Software Developer with a demonstrated history of delivering
@@ -82,10 +82,10 @@ export default function About({ id }: { id: string }) {
           </Typography>
           <Typography
             sx={{
-              fontSize: "18px",
-              marginTop: "1em",
-              color: "rgb(85, 85, 85)",
-              maxWidth: "22em",
+              fontSize: '18px',
+              marginTop: '1em',
+              color: 'rgb(85, 85, 85)',
+              maxWidth: '22em',
             }}
           >
             I am known for my ability to adapt to new environments, learn new
