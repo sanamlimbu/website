@@ -1,13 +1,20 @@
 import { GitHub, LinkedIn } from '@mui/icons-material';
-import { Box, IconButton, Typography } from '@mui/material';
+import {
+  Box,
+  IconButton,
+  Theme,
+  Typography,
+  useMediaQuery,
+} from '@mui/material';
+import Centered from './Centered';
 export default function Footer() {
+  const isSmallScreen = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down('sm')
+  );
   return (
-    <Box
+    <Centered
       sx={{
         background: 'rgb(45,46,50)',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
         margin: '0',
         padding: '0',
       }}
@@ -15,18 +22,15 @@ export default function Footer() {
       <Box
         sx={{
           display: 'flex',
+          flexDirection: isSmallScreen ? 'column' : 'row',
           justifyContent: 'space-between',
           maxWidth: '62em',
-          padding: '3em 2em 3em 2em',
+          padding: isSmallScreen ? '2.5em 2em 2.5em 2em' : '3em 2em 3em 2em',
           flexWrap: 'wrap',
           width: '100%',
           gap: '1em',
           alignItems: 'center',
-          '@media (max-width: 500px)': {
-            flexDirection: 'column',
-            padding: '2.5em 2em 2.5em 2em',
-            textAlign: 'center',
-          },
+          textAlign: isSmallScreen ? 'center' : 'initial',
         }}
       >
         <Typography
@@ -85,6 +89,6 @@ export default function Footer() {
           </IconButton>
         </Typography>
       </Box>
-    </Box>
+    </Centered>
   );
 }

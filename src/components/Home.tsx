@@ -5,7 +5,7 @@ import {
   Typography,
   useMediaQuery,
 } from '@mui/material';
-import { styled } from '@mui/system';
+import { styled, Theme } from '@mui/system';
 import AWS from '../assets/aws.svg';
 import CSS from '../assets/css.svg';
 import GitHub from '../assets/github.svg';
@@ -15,19 +15,29 @@ import JavaScript from '../assets/javascript.svg';
 import LinkedIn from '../assets/linkedin.svg';
 import Postgres from '../assets/postgres.svg';
 import React from '../assets/react.svg';
-import Sanam from '../assets/sanam.jpg';
 import TypeScript from '../assets/typescript.svg';
 import Waving from '../assets/waving.png';
+import Centered from './Centered';
 export default function Home({ id }: { id: string }) {
-  const matches = useMediaQuery('(max-width:900px)');
+  const isSmallScreen = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down('md')
+  );
+  const isMediumScreen = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down('md')
+  );
+  const isLargeScreen = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down('md')
+  );
+  const isExtraLargeScreen = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down('md')
+  );
+
   return (
-    <Box
+    <Centered
       id={id}
       sx={{
         backgroundColor: '#f9f9f9',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        overflow: 'hidden',
       }}
     >
       <Box
@@ -36,22 +46,15 @@ export default function Home({ id }: { id: string }) {
           flexDirection: 'column',
           maxWidth: '62em',
           width: '100%',
-          padding: '13em 2em 14em 2em',
-          '@media (max-width: 480px)': {
-            padding: '7em 2em 6em 2em',
-          },
-          '@media (min-width: 481px) and (max-width: 768px)': {
-            padding: '9em 2em 6em 2em',
-          },
-          '@media (min-width: 769px) and (max-width: 1024px)': {
-            padding: '9em 2em 6em 2em',
-          },
-          '@media (min-width: 1025px) and (max-width: 1200px)': {
-            padding: '11em 2em 6em 2em',
-          },
-          '@media (min-width: 1201px)': {
-            padding: '14em 2em 14em 2em',
-          },
+          padding: isSmallScreen
+            ? '9em 2em 5em 2em'
+            : isMediumScreen
+            ? '9em 2em 6em 2em'
+            : isLargeScreen
+            ? '11em 2em 6em 2em'
+            : isExtraLargeScreen
+            ? '13em 2em 9em 2em'
+            : '13em 2em 9em 2em',
         }}
       >
         <Box
@@ -66,50 +69,33 @@ export default function Home({ id }: { id: string }) {
           }}
         >
           <Box>
-            <Typography variant={matches ? 'h4' : 'h2'} fontWeight="bold">
-              {' '}
-              Full Stack Software
-              <br />
-              Developer{' '}
-              {matches ? (
-                <img
-                  src={Waving}
-                  height={'40em'}
-                  style={{
-                    position: 'absolute',
-                    marginLeft: '0.2em',
-                  }}
-                />
+            <Typography
+              variant={isMediumScreen ? 'h4' : 'h2'}
+              fontWeight="bold"
+              sx={{
+                display: 'inline-flex',
+                gap: '0.5em',
+                overflow: 'wrap',
+              }}
+            >
+              Full Stack Software Developer
+              {isMediumScreen ? (
+                <img src={Waving} height={'40em'} />
               ) : (
-                <img
-                  src={Waving}
-                  height={'70em'}
-                  style={{
-                    position: 'absolute',
-                    marginLeft: '0.2em',
-                  }}
-                />
+                <img src={Waving} height={'70em'} />
               )}
             </Typography>
             <Typography
               sx={{
                 fontSize: '18px',
-                marginTop: '1em',
+                marginTop: '3em',
                 color: 'rgb(85, 85, 85)',
-                maxWidth: '22em',
+                marginBottom: '3em',
               }}
             >
               Hi, I'm Sanam Limbu. A passionate Software Developer based in
               Perth, Australia. 📍
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: '18px',
-                marginTop: '1em',
-                color: 'rgb(85, 85, 85)',
-                maxWidth: '22em',
-              }}
-            >
+              <br />
               Aside from software engineering, I enjoy going to the gym, and
               watching Manchester United playing soccer.
             </Typography>
@@ -147,7 +133,6 @@ export default function Home({ id }: { id: string }) {
               </IconButton>
             </Typography>
           </Box>
-          <AmoebaBorderBox></AmoebaBorderBox>
         </Box>
         <Box>
           <Box
@@ -170,7 +155,6 @@ export default function Home({ id }: { id: string }) {
             </Typography>
             <Divider />
           </Box>
-
           <Box
             sx={{
               display: 'flex',
@@ -209,51 +193,9 @@ export default function Home({ id }: { id: string }) {
           </Box>
         </Box>
       </Box>
-    </Box>
+    </Centered>
   );
 }
-
-const AmoebaBorderBox = styled(Box)(() => ({
-  backgroundImage: `url(${Sanam})`,
-  width: '22rem',
-  height: '22rem',
-  backgroundSize: 'cover',
-  backgroundPosition: 'center center',
-  backgroundRepeat: 'no-repeat',
-  border: '3px solid $black-shade',
-
-  '@media (max-width: 500px)': {
-    width: '16rem!important',
-    height: '16rem!important',
-  },
-
-  '@media (max-width: 768px)': {
-    width: '18rem',
-    height: '18rem',
-  },
-
-  '@media (max-width: 1024px)': {
-    width: '20rem',
-    height: '20rem',
-  },
-
-  animation: 'morph 8s ease-in-out infinite',
-  borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
-  position: 'relative',
-  transition: 'all 1s ease-in-out',
-
-  '@keyframes morph': {
-    '0%': {
-      borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
-    },
-    '50%': {
-      borderRadius: '30% 60% 70% 40% / 50% 60% 30% 60%',
-    },
-    '100%': {
-      borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
-    },
-  },
-}));
 
 const StyledImg = styled('img')(() => ({
   height: '2em',

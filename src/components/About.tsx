@@ -1,16 +1,15 @@
-import { Box, Typography, useMediaQuery } from '@mui/material';
-import Laptop from '../assets/laptop.jpeg';
+import { Box, Theme, Typography, useMediaQuery } from '@mui/material';
+import Centered from './Centered';
 
 export default function About({ id }: { id: string }) {
-  const matches = useMediaQuery('(max-width:480px)');
+  const isLargeScreen = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down('lg')
+  );
   return (
-    <Box
+    <Centered
       id={id}
       sx={{
         background: '#fff',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
       }}
     >
       <Box
@@ -20,33 +19,12 @@ export default function About({ id }: { id: string }) {
           maxWidth: '62em',
           padding: '6em 2em 6em 2em',
           width: '100%',
-          '@media (max-width: 1024px)': {
-            flexDirection: 'column',
-            textAlign: 'center',
-            alignItems: 'center',
-            gap: '2em',
-          },
+          flexDirection: isLargeScreen ? 'column' : 'row',
+          textAlign: isLargeScreen ? 'center' : 'initial',
+          alignItems: 'center',
+          gap: isLargeScreen ? '2em' : 'initials',
         }}
       >
-        <Box sx={{ position: 'relative' }}>
-          {matches ? (
-            <img
-              src={Laptop}
-              height={'250px'}
-              style={{
-                borderRadius: '16px',
-              }}
-            />
-          ) : (
-            <img
-              src={Laptop}
-              height={'336px'}
-              style={{
-                borderRadius: '16px',
-              }}
-            />
-          )}
-        </Box>
         <Box>
           <Typography
             sx={{
@@ -66,14 +44,13 @@ export default function About({ id }: { id: string }) {
               fontWeight: 'bold',
             }}
           >
-            A Full Stack Software Developer
-            <br /> based in Perth, Australia 📍
+            A Full Stack Software Developer based in Perth, Australia 📍
           </Typography>
           <Typography
             sx={{
               fontSize: '18px',
               color: 'rgb(85, 85, 85)',
-              maxWidth: '22em',
+              marginTop: '2em',
             }}
           >
             I am a Software Developer with a demonstrated history of delivering
@@ -83,9 +60,8 @@ export default function About({ id }: { id: string }) {
           <Typography
             sx={{
               fontSize: '18px',
-              marginTop: '1em',
+              marginTop: '2em',
               color: 'rgb(85, 85, 85)',
-              maxWidth: '22em',
             }}
           >
             I am known for my ability to adapt to new environments, learn new
@@ -94,6 +70,6 @@ export default function About({ id }: { id: string }) {
           </Typography>
         </Box>
       </Box>
-    </Box>
+    </Centered>
   );
 }

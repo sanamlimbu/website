@@ -1,17 +1,18 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Theme, Typography, useMediaQuery } from '@mui/material';
 import Envelope from '../assets/envelope.svg';
 import Location from '../assets/location.svg';
+import Centered from './Centered';
 import { ImageContainer } from './Home';
 
 export default function Contact({ id }: { id: string }) {
+  const isSmallScreen = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down('sm')
+  );
   return (
-    <Box
+    <Centered
       id={id}
       sx={{
         backgroundColor: '#fff',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
       }}
     >
       <Box
@@ -21,11 +22,9 @@ export default function Contact({ id }: { id: string }) {
           maxWidth: '62em',
           padding: '6em 2em',
           width: '100%',
-          '@media (max-width: 768px)': {
-            flexDirection: 'column',
-            textAlign: 'center',
-            alignItems: 'center',
-          },
+          flexDirection: isSmallScreen ? 'column' : 'row',
+          textAlign: isSmallScreen ? 'center' : 'initial',
+          alignItems: isSmallScreen ? 'center' : 'initial',
         }}
       >
         <Box>
@@ -50,21 +49,16 @@ export default function Contact({ id }: { id: string }) {
               display: 'flex',
               gap: '4em',
               marginTop: '3em',
-              '@media (max-width: 768px)': {
-                flexDirection: 'column',
-                alignItems: 'center',
-              },
+              flexDirection: isSmallScreen ? 'column' : 'row',
+              alignItems: isSmallScreen ? 'center' : 'initial',
             }}
           >
             <Box
               sx={{
                 display: 'flex',
-                alignItems: 'center',
                 gap: '1em',
-                '@media (max-width: 768px)': {
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                },
+                alignItems: 'center',
+                flexDirection: isSmallScreen ? 'column' : 'row',
               }}
             >
               <ImageContainer sx={{ padding: '1.3em' }}>
@@ -93,10 +87,7 @@ export default function Contact({ id }: { id: string }) {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '1em',
-                '@media (max-width: 768px)': {
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                },
+                flexDirection: isSmallScreen ? 'column' : 'row',
               }}
             >
               <ImageContainer sx={{ padding: '1.3em' }}>
@@ -127,8 +118,7 @@ export default function Contact({ id }: { id: string }) {
             </Box>
           </Box>
         </Box>
-        <div></div>
       </Box>
-    </Box>
+    </Centered>
   );
 }

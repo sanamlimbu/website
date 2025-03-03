@@ -4,6 +4,7 @@ import {
   Box,
   Drawer,
   IconButton,
+  Theme,
   Typography,
   TypographyProps,
   styled,
@@ -11,9 +12,13 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
+import Centered from './Centered';
 export default function NavBar() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const matches = useMediaQuery('(max-width:900px)');
+  const isSmallScreen = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down('sm')
+  );
 
   const toggleDrawer = (open: boolean) => () => {
     setIsDrawerOpen(open);
@@ -38,11 +43,10 @@ export default function NavBar() {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          padding: '1.2em 4em 1.2em 3em',
+          padding: isSmallScreen
+            ? '1.2em 2em 1.2em 1.8em'
+            : '1.2em 4em 1.2em 3em',
           fontSize: '1.2rem',
-          '@media (max-width: 480px)': {
-            padding: '1.2em 2em 1.2em 1.8em',
-          },
         }}
       >
         <NavItem fontSize={'24px!important'}>limbu.dev</NavItem>
@@ -66,7 +70,7 @@ export default function NavBar() {
           <Box
             sx={{
               display: 'flex',
-              gap: '1.2em',
+              gap: '3em',
               flexWrap: 'wrap',
               maxWidth: '100%',
               alignItems: 'center',
@@ -111,13 +115,10 @@ export default function NavBar() {
           >
             <CloseRoundedIcon fontSize="large" />
           </IconButton>
-          <Box
+          <Centered
             sx={{
-              display: 'flex',
               flexDirection: 'column',
               height: '100%',
-              alignItems: 'center',
-              justifyContent: 'center',
               gap: '2em',
             }}
           >
@@ -157,7 +158,7 @@ export default function NavBar() {
             >
               <MobileNavItem>Contact</MobileNavItem>
             </ScrollLink>
-          </Box>
+          </Centered>
         </Box>
       </Drawer>
     </Box>
