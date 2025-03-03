@@ -1,4 +1,4 @@
-import { GitHub } from '@mui/icons-material';
+import { GitHub, Link } from '@mui/icons-material';
 import { Box, Theme, Typography, useMediaQuery } from '@mui/material';
 import Centered from './Centered';
 
@@ -196,7 +196,11 @@ const ProjectLink = ({ url, type }: { url: string; type: 'Repo' | 'Demo' }) => {
       }}
     >
       <span> {type === 'Repo' ? 'Code' : 'Demo'}</span>{' '}
-      <GitHub sx={{ marginLeft: '0.2em', marginRight: '1em' }} />
+      {type === 'Repo' ? (
+        <GitHub sx={{ marginLeft: '0.2em', marginRight: '1em' }} />
+      ) : (
+        <Link sx={{ marginLeft: '0.2em', marginRight: '1em' }} />
+      )}
     </Typography>
   );
 };

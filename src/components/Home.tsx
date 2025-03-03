@@ -76,6 +76,7 @@ export default function Home({ id }: { id: string }) {
                 display: 'inline-flex',
                 gap: '0.5em',
                 overflow: 'wrap',
+                alignItems: 'center',
               }}
             >
               Full Stack Software Developer
